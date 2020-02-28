@@ -8,11 +8,13 @@ public class Drwal {
 
     public static void main(String[] args) {
 
+        try{
         int xStart = Integer.parseInt(args[0])-1;
         int yStart = Integer.parseInt(args[1])-1;
-        char color = args[2].charAt(0);
         width = Integer.parseInt(args[3]);
         height = Integer.parseInt(args[4]);
+        char color = args[2].charAt(0);
+
 
         if(height < 1 || width < 1){
             System.out.println("klops");
@@ -31,6 +33,9 @@ public class Drwal {
         copy(picture,input);
         floodFill(picture,xStart,yStart,color);
         print(picture);
+        }catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            System.out.print("klops");
+        }
     }
 
     private static void copy(char[][] picture, Scanner input) {
