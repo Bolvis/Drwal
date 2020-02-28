@@ -15,9 +15,8 @@ public class Drwal {
         height = Integer.parseInt(args[4]);
         char color = args[2].charAt(0);
 
-
         if(height < 1 || width < 1){
-            System.out.println("klops");
+            System.out.print("klops");
             return;
         }
 
