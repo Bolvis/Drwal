@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Drwal {
@@ -18,7 +19,7 @@ public class Drwal {
             return;
         }
 
-        char[][] picture = new char[width][height];
+        char[][] picture = new char[height][width];
         Scanner input = new Scanner(System.in);
 
         if(xStart > width || yStart > height || xStart < 0 || yStart < 0) {
@@ -35,10 +36,8 @@ public class Drwal {
 
     private static void copy(char[][] picture, Scanner input) {
 
-        for(int y = 0; y < picture.length; y++) {
-            for(int x = 0; x < picture.length; x++) {
-                picture[x][y] = ' ';
-            }
+        for (char[] chars : picture) {
+            Arrays.fill(chars, ' ');
         }
 
         for(int y = 0; input.hasNextLine() ; y++){
@@ -48,7 +47,7 @@ public class Drwal {
             for(int x = 0; line.length() > x; x++){
 
                 try{
-                    picture[x][y] = line.charAt(x);
+                    picture[y][x] = line.charAt(x);
                 }catch(ArrayIndexOutOfBoundsException e) {
                     System.out.println("klops");
                     System.exit(1);
@@ -73,12 +72,12 @@ public class Drwal {
 
         if (0 > y || height <= y || 0 > x || width <= x)
             return;
-        if (picture[x][y] != prevChar)
+        if (picture[y][x] != prevChar)
             return;
         if (prevChar == '#')
             return;
 
-        picture[x][y] = newChar;
+        picture[y][x] = newChar;
 
         floodFillUtil(picture, x+1, y, prevChar, newChar);
         floodFillUtil(picture, x-1, y, prevChar, newChar);
@@ -88,7 +87,7 @@ public class Drwal {
 
     private static void floodFill(char[][] picture, int x, int y, char newChar) {
 
-        char prevChar = picture[x][y];
+        char prevChar = picture[y][x];
         if(newChar == prevChar) return;
         floodFillUtil(picture, x, y, prevChar, newChar);
     }
