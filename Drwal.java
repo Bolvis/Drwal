@@ -40,7 +40,7 @@ public class Drwal {
         for(int y=0;input.hasNextLine();y++){
 
             String line = input.nextLine();
-            
+
             for(int x=0;line.length()>x;x++){
                 try{
                     picture[y][x]=line.charAt(x);
@@ -62,23 +62,23 @@ public class Drwal {
         }
 
     }
-    private static void floodFillUtil(char[][] picture, int x, int y, char prevC, char newC) {
+    private static void floodFillUtil(char[][] picture, int x, int y, char prevChar, char newChar) {
         if (x < 0 || x >= width || y < 0 || y >= height)
             return;
-        if (picture[y][x] != prevC)
+        if (picture[y][x] != prevChar)
             return;
 
-        picture[y][x] = newC;
+        picture[y][x] = newChar;
 
-        floodFillUtil(picture, x+1, y, prevC, newC);
-        floodFillUtil(picture, x-1, y, prevC, newC);
-        floodFillUtil(picture, x, y+1, prevC, newC);
-        floodFillUtil(picture, x, y-1, prevC, newC);
+        floodFillUtil(picture, x+1, y, prevChar, newChar);
+        floodFillUtil(picture, x-1, y, prevChar, newChar);
+        floodFillUtil(picture, x, y+1, prevChar, newChar);
+        floodFillUtil(picture, x, y-1, prevChar, newChar);
     }
 
 
-    private static void floodFill(char[][] picture, int x, int y, char newC) {
-        char prevC = picture[y][x];
-        floodFillUtil(picture, x, y, prevC, newC);
+    private static void floodFill(char[][] picture, int x, int y, char newChar) {
+        char prevChar = picture[y][x];
+        floodFillUtil(picture, x, y, prevChar, newChar);
     }
 }
