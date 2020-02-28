@@ -29,7 +29,6 @@ public class Drwal {
         }
 
         copy(picture,input);
-
         floodFill(picture,xStart,yStart,color);
         print(picture);
     }
