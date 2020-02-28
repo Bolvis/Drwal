@@ -85,6 +85,7 @@ public class Drwal {
     private static void floodFill(char[][] picture, int x, int y, char newChar) {
 
         char prevChar = picture[y][x];
+        if(newChar == prevChar) return;
         floodFillUtil(picture, x, y, prevChar, newChar);
     }
 }
