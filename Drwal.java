@@ -73,7 +73,7 @@ public class Drwal {
             return;
         if (picture[y][x] != prevChar)
             return;
-        if (prevChar == '#')
+        if ('#' == prevChar)
             return;
 
         picture[y][x] = newChar;
