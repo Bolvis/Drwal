@@ -4,6 +4,7 @@ public class Drwal {
 
     static int width;
     static int height;
+
     public static void main(String[] args) {
 
         int xStart = Integer.parseInt(args[0])-1;
@@ -12,7 +13,7 @@ public class Drwal {
         height = Integer.parseInt(args[4]);
         char color = args[2].charAt(0);
 
-        if(height<1||width<1){
+        if(height < 1 || width < 1){
             System.out.println("klops");
             return;
         }
@@ -20,7 +21,7 @@ public class Drwal {
         char[][] picture = new char[width][height];
         Scanner input = new Scanner(System.in);
 
-        if(xStart>width||yStart>height||xStart<0||yStart<0) {
+        if(xStart > width || yStart > height || xStart < 0 || yStart < 0) {
             copy(picture,input);
             print(picture);
             return;
@@ -36,26 +37,27 @@ public class Drwal {
 
     private static void copy(char[][] picture, Scanner input) {
 
-
-        for(int y=0;input.hasNextLine();y++){
+        for(int y = 0; input.hasNextLine() ; y++){
 
             String line = input.nextLine();
 
-            for(int x=0;line.length()>x;x++){
+            for(int x = 0; line.length() > x; x++){
+
                 try{
-                    picture[y][x]=line.charAt(x);
-                }catch(ArrayIndexOutOfBoundsException e)
-                {
+                    picture[y][x] = line.charAt(x);
+                }catch(ArrayIndexOutOfBoundsException e) {
                     System.out.println("klops");
                     System.exit(1);
                 }
+
             }
         }
     }
 
     private static void print(char[][] picture) {
-        for (char[] row: picture) {
-            for(char item: row){
+
+        for (char[] row : picture) {
+            for(char item : row){
                 System.out.print(item);
             }
             System.out.println();
@@ -63,6 +65,7 @@ public class Drwal {
 
     }
     private static void floodFillUtil(char[][] picture, int x, int y, char prevChar, char newChar) {
+
         if (0 > y || height <= y || 0 > x || width <= x)
             return;
         if (picture[y][x] != prevChar)
@@ -80,6 +83,7 @@ public class Drwal {
 
 
     private static void floodFill(char[][] picture, int x, int y, char newChar) {
+
         char prevChar = picture[y][x];
         floodFillUtil(picture, x, y, prevChar, newChar);
     }
