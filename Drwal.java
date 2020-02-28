@@ -68,8 +68,6 @@ public class Drwal {
 
         if (0 > y || height <= y || 0 > x || width <= x)
             return;
-        if (picture[x][y] != prevChar)
-            return;
         if (prevChar == '#')
             return;
 
