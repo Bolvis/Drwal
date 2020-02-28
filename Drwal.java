@@ -40,8 +40,7 @@ public class Drwal {
                 picture[x][y] = ' ';
             }
         }
-
-
+        
         for(int y = 0; input.hasNextLine() ; y++){
 
             String line = input.nextLine();
