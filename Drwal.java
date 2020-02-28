@@ -32,9 +32,6 @@ public class Drwal {
         floodFill(picture,xStart,yStart,color);
         print(picture);
     }
-
-
-
     private static void copy(char[][] picture, Scanner input) {
 
         for(int y = 0; input.hasNextLine() ; y++){
@@ -53,7 +50,6 @@ public class Drwal {
             }
         }
     }
-
     private static void print(char[][] picture) {
 
         for (char[] row : picture) {
@@ -80,8 +76,6 @@ public class Drwal {
         floodFillUtil(picture, x, y+1, prevChar, newChar);
         floodFillUtil(picture, x, y-1, prevChar, newChar);
     }
-
-
     private static void floodFill(char[][] picture, int x, int y, char newChar) {
 
         char prevChar = picture[x][y];
