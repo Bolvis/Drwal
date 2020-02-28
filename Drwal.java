@@ -2,16 +2,16 @@ import java.util.Scanner;
 
 public class Drwal {
 
-    static int width;
-    static int height;
+    private static int width;
+    private static int height;
 
     public static void main(String[] args) {
 
         int xStart = Integer.parseInt(args[0])-1;
         int yStart = Integer.parseInt(args[1])-1;
+        char color = args[2].charAt(0);
         width = Integer.parseInt(args[3]);
         height = Integer.parseInt(args[4]);
-        char color = args[2].charAt(0);
 
         if(height < 1 || width < 1){
             System.out.println("klops");
@@ -32,6 +32,7 @@ public class Drwal {
         floodFill(picture,xStart,yStart,color);
         print(picture);
     }
+
     private static void copy(char[][] picture, Scanner input) {
 
         for(int y = 0; input.hasNextLine() ; y++){
@@ -50,6 +51,7 @@ public class Drwal {
             }
         }
     }
+
     private static void print(char[][] picture) {
 
         for (char[] row : picture) {
@@ -60,6 +62,7 @@ public class Drwal {
         }
 
     }
+
     private static void floodFillUtil(char[][] picture, int x, int y, char prevChar, char newChar) {
 
         if (0 > y || height <= y || 0 > x || width <= x)
@@ -74,6 +77,7 @@ public class Drwal {
         floodFillUtil(picture, x, y+1, prevChar, newChar);
         floodFillUtil(picture, x, y-1, prevChar, newChar);
     }
+
     private static void floodFill(char[][] picture, int x, int y, char newChar) {
 
         char prevChar = picture[x][y];
