@@ -53,8 +53,8 @@ public class Drwal {
                 try{
                     picture[y][x] = line.charAt(x);
                 }catch(ArrayIndexOutOfBoundsException e) {
-                    System.out.println("klops");
-                    System.exit(1);
+                    System.out.print("klops");
+                    System.exit(0);
                 }
 
             }
