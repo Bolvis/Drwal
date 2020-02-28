@@ -63,7 +63,7 @@ public class Drwal {
 
     }
     private static void floodFillUtil(char[][] picture, int x, int y, char prevChar, char newChar) {
-        if (x < 0 || x >= width || y < 0 || y >= height)
+        if (0 > y || height <= y || 0 > x || width <= x)
             return;
         if (picture[y][x] != prevChar)
             return;
