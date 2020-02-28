@@ -35,6 +35,13 @@ public class Drwal {
 
     private static void copy(char[][] picture, Scanner input) {
 
+        for(int y = 0; y < picture.length; y++) {
+            for(int x = 0; x < picture.length; x++) {
+                picture[x][y] = ' ';
+            }
+        }
+
+
         for(int y = 0; input.hasNextLine() ; y++){
 
             String line = input.nextLine();
@@ -42,7 +49,6 @@ public class Drwal {
             for(int x = 0; line.length() > x; x++){
 
                 try{
-                    picture[x][y] = ' ';
                     picture[x][y] = line.charAt(x);
                 }catch(ArrayIndexOutOfBoundsException e) {
                     System.out.println("klops");
@@ -67,6 +73,8 @@ public class Drwal {
     private static void floodFillUtil(char[][] picture, int x, int y, char prevChar, char newChar) {
 
         if (0 > y || height <= y || 0 > x || width <= x)
+            return;
+        if (picture[x][y] != prevChar)
             return;
         if (prevChar == '#')
             return;
