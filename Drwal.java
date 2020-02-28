@@ -28,7 +28,7 @@ public class Drwal {
 
         copy(picture,input);
 
-        if(picture[yStart][xStart]!='#')floodFill(picture,xStart,yStart,color);
+        floodFill(picture,xStart,yStart,color);
         print(picture);
     }
 
@@ -66,6 +66,8 @@ public class Drwal {
         if (0 > y || height <= y || 0 > x || width <= x)
             return;
         if (picture[y][x] != prevChar)
+            return;
+        if (prevChar == '#')
             return;
 
         picture[y][x] = newChar;
