@@ -44,7 +44,7 @@ public class Drwal {
             for(int x = 0; line.length() > x; x++){
 
                 try{
-                    picture[y][x] = line.charAt(x);
+                    picture[x][y] = line.charAt(x);
                 }catch(ArrayIndexOutOfBoundsException e) {
                     System.out.println("klops");
                     System.exit(1);
@@ -68,7 +68,7 @@ public class Drwal {
 
         if (0 > y || height <= y || 0 > x || width <= x)
             return;
-        if (picture[y][x] != prevChar)
+        if (picture[x][y] != prevChar)
             return;
         if (prevChar == '#')
             return;
@@ -84,7 +84,7 @@ public class Drwal {
 
     private static void floodFill(char[][] picture, int x, int y, char newChar) {
 
-        char prevChar = picture[y][x];
+        char prevChar = picture[x][y];
         if(newChar == prevChar) return;
         floodFillUtil(picture, x, y, prevChar, newChar);
     }
