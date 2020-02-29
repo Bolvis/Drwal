@@ -15,7 +15,7 @@ public class Drwal {
         height = Integer.parseInt(args[4]);
         char color = args[2].charAt(0);
 
-        if(height < 1 || width < 1){
+        if(1 > height || 50 < height || 1 > width || 50 < width){
             System.out.print("klops");
             return;
         }
@@ -77,7 +77,7 @@ public class Drwal {
             return;
         if (picture[y][x] != prevChar)
             return;
-        if ('#' == prevChar)
+        if (' ' != prevChar)
             return;
 
         picture[y][x] = newChar;
