@@ -71,27 +71,25 @@ public class Drwal {
 
     }
 
-    private static void floodFillUtil(char[][] picture, int x, int y, char prevChar, char newChar) {
+    private static void floodFillUtil(char[][] picture, int x, int y, char newChar) {
 
         if (0 > y || height <= y || 0 > x || width <= x)
             return;
-        if (picture[y][x] != prevChar)
-            return;
-        if (' ' != prevChar)
+        if (picture[y][x] != ' ')
             return;
 
         picture[y][x] = newChar;
 
-        floodFillUtil(picture, x+1, y, prevChar, newChar);
-        floodFillUtil(picture, x-1, y, prevChar, newChar);
-        floodFillUtil(picture, x, y+1, prevChar, newChar);
-        floodFillUtil(picture, x, y-1, prevChar, newChar);
+        floodFillUtil(picture, x+1, y, newChar);
+        floodFillUtil(picture, x-1, y, newChar);
+        floodFillUtil(picture, x, y+1, newChar);
+        floodFillUtil(picture, x, y-1, newChar);
     }
 
     private static void floodFill(char[][] picture, int x, int y, char newChar) {
 
         char prevChar = picture[y][x];
         if(newChar == prevChar) return;
-        floodFillUtil(picture, x, y, prevChar, newChar);
+        floodFillUtil(picture, x, y, newChar);
     }
 }
