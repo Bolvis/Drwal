@@ -23,7 +23,7 @@ public class Drwal {
         char[][] picture = new char[height][width];
         Scanner input = new Scanner(System.in);
 
-        if(yStart > height || 0 > yStart  || xStart > width || xStart < 0) {
+        if(yStart > height || 0 > yStart  || xStart > width || 0 > xStart) {
             copy(picture,input);
             print(picture);
             return;
