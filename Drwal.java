@@ -23,14 +23,14 @@ public class Drwal {
         char[][] picture = new char[height][width];
         Scanner input = new Scanner(System.in);
 
-        if(yStart > height || yStart < 0 || xStart > width || xStart < 0) {
+        if(yStart > height || 0 > yStart  || xStart > width || xStart < 0) {
             copy(picture,input);
             print(picture);
             return;
         }
 
         copy(picture,input);
-        floodFill(picture,xStart,yStart,color);
+        floodFill(picture, xStart, yStart,c olor);
         print(picture);
         }catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
             System.out.print("klops");
