@@ -3,9 +3,9 @@ public class Picture {
     private final int width;
     private final int height;
 
-    public Picture(int width, int height){
+    public Picture(int width, int height) {
         this.arr = new char[height][width];
-        this. width = width;
+        this.width = width;
         this.height = height;
     }
 
@@ -21,7 +21,7 @@ public class Picture {
         return height;
     }
 
-    public void setArrElement(int x, int y, char newChar){
+    public void setArrElement(int x, int y, char newChar) {
         this.arr[y][x] = newChar;
     }
 }

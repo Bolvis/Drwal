@@ -13,28 +13,28 @@ public class Drwal {
 
     public static void main(String[] args) {
 
-        try{
-        int xStart = Integer.parseInt(args[X_START_POSITION])-1;
-        int yStart = Integer.parseInt(args[Y_START_POSITION])-1;
-        int width = Integer.parseInt(args[WIDTH_POSITION]);
-        int height = Integer.parseInt(args[HEIGHT_POSITION]);
-        char color = args[COLOR_POSITION].charAt(0);
+        try {
+            int xStart = Integer.parseInt(args[X_START_POSITION]) - 1;
+            int yStart = Integer.parseInt(args[Y_START_POSITION]) - 1;
+            int width = Integer.parseInt(args[WIDTH_POSITION]);
+            int height = Integer.parseInt(args[HEIGHT_POSITION]);
+            char color = args[COLOR_POSITION].charAt(0);
 
-        if(!meetsExerciseExpectations(width, height)){
-            System.out.print(ERROR_MESSAGE);
-            return;
-        }
+            if (!meetsExerciseExpectations(width, height)) {
+                System.out.print(ERROR_MESSAGE);
+                return;
+            }
 
-        Picture picture = new Picture(width, height);
-        Scanner input = new Scanner(System.in);
-        copy(picture, input);
+            Picture picture = new Picture(width, height);
+            Scanner input = new Scanner(System.in);
+            copy(picture, input);
 
-        if(positionWithinPicture(xStart, yStart, width, height)) {
-            floodFill(picture, xStart, yStart,color);
-        }
+            if (positionWithinPicture(xStart, yStart, width, height)) {
+                floodFill(picture, xStart, yStart, color);
+            }
 
-        print(picture);
-        }catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            print(picture);
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
             System.out.print(ERROR_MESSAGE);
         }
     }
@@ -45,15 +45,15 @@ public class Drwal {
             Arrays.fill(chars, ' ');
         }
 
-        for(int y = 0; input.hasNextLine() ; y++){
+        for (int y = 0; input.hasNextLine(); y++) {
 
             String line = input.nextLine();
 
-            for(int x = 0; line.length() > x; x++){
+            for (int x = 0; line.length() > x; x++) {
 
-                try{
+                try {
                     picture.getArr()[y][x] = line.charAt(x);
-                }catch(ArrayIndexOutOfBoundsException e) {
+                } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.print(ERROR_MESSAGE);
                     System.exit(0);
                 }
@@ -64,7 +64,7 @@ public class Drwal {
 
     private static void print(Picture picture) {
         for (char[] row : picture.getArr()) {
-            for(char item : row){
+            for (char item : row) {
                 System.out.print(item);
             }
             System.out.println();
@@ -80,10 +80,10 @@ public class Drwal {
 
         picture.setArrElement(x, y, newChar);
 
-        floodFill(picture, x+1, y, newChar);
-        floodFill(picture, x-1, y, newChar);
-        floodFill(picture, x, y+1, newChar);
-        floodFill(picture, x, y-1, newChar);
+        floodFill(picture, x + 1, y, newChar);
+        floodFill(picture, x - 1, y, newChar);
+        floodFill(picture, x, y + 1, newChar);
+        floodFill(picture, x, y - 1, newChar);
     }
 
     private static boolean meetsExerciseExpectations(int width, int height) {
