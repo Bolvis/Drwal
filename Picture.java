@@ -1,4 +1,4 @@
-public class Picture {
+public final class Picture {
     private final char[][] arr;
     private final int width;
     private final int height;

@@ -28,6 +28,7 @@ public class Drwal {
             Picture picture = new Picture(width, height);
             Scanner input = new Scanner(System.in);
             copy(picture, input);
+            input.close();
 
             if (positionWithinPicture(xStart, yStart, width, height)) {
                 floodFill(picture, xStart, yStart, color);
