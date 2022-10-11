@@ -3,43 +3,45 @@ import java.util.Scanner;
 
 public class Drwal {
 
-    private static int width;
-    private static int height;
+    private static final int X_START_POSITION = 0;
+    private static final int Y_START_POSITION = 1;
+    private static final int COLOR_POSITION = 2;
+    private static final int WIDTH_POSITION = 3;
+    private static final int HEIGHT_POSITION = 4;
+
+    private static final String ERROR_MESSAGE = "klops";
 
     public static void main(String[] args) {
 
         try{
-        int xStart = Integer.parseInt(args[0])-1;
-        int yStart = Integer.parseInt(args[1])-1;
-        width = Integer.parseInt(args[3]);
-        height = Integer.parseInt(args[4]);
-        char color = args[2].charAt(0);
+        int xStart = Integer.parseInt(args[X_START_POSITION])-1;
+        int yStart = Integer.parseInt(args[Y_START_POSITION])-1;
+        int width = Integer.parseInt(args[WIDTH_POSITION]);
+        int height = Integer.parseInt(args[HEIGHT_POSITION]);
+        char color = args[COLOR_POSITION].charAt(0);
 
-        if(1 > height || 50 < height || 1 > width || 50 < width){
-            System.out.print("klops");
+        if(!meetsExerciseExpectations(width, height)){
+            System.out.print(ERROR_MESSAGE);
             return;
         }
 
-        char[][] picture = new char[height][width];
+        Picture picture = new Picture(width, height);
         Scanner input = new Scanner(System.in);
+        copy(picture, input);
 
-        if(yStart > height || 0 > yStart  || xStart > width || 0 > xStart) {
-            copy(picture,input);
-            print(picture);
-            return;
+        if(positionWithinPicture(xStart, yStart, width, height)) {
+            floodFill(picture, xStart, yStart,color);
         }
 
-        copy(picture,input);
-        floodFill(picture, xStart, yStart,c olor);
         print(picture);
         }catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-            System.out.print("klops");
+            System.out.print(ERROR_MESSAGE);
         }
     }
 
-    private static void copy(char[][] picture, Scanner input) {
+    private static void copy(Picture picture, Scanner input) {
 
-        for (char[] chars : picture) {
+        for (char[] chars : picture.getArr()) {
             Arrays.fill(chars, ' ');
         }
 
@@ -50,9 +52,9 @@ public class Drwal {
             for(int x = 0; line.length() > x; x++){
 
                 try{
-                    picture[y][x] = line.charAt(x);
+                    picture.getArr()[y][x] = line.charAt(x);
                 }catch(ArrayIndexOutOfBoundsException e) {
-                    System.out.print("klops");
+                    System.out.print(ERROR_MESSAGE);
                     System.exit(0);
                 }
 
@@ -60,29 +62,35 @@ public class Drwal {
         }
     }
 
-    private static void print(char[][] picture) {
-
-        for (char[] row : picture) {
+    private static void print(Picture picture) {
+        for (char[] row : picture.getArr()) {
             for(char item : row){
                 System.out.print(item);
             }
             System.out.println();
         }
-
     }
 
-    private static void floodFill(char[][] picture, int x, int y, char newChar) {
+    private static void floodFill(Picture picture, int x, int y, char newChar) {
 
-        if (0 > y || height <= y || 0 > x || width <= x)
+        if (0 > y || picture.getHeight() <= y || 0 > x || picture.getWidth() <= x)
             return;
-        if (picture[y][x] != ' ')
+        if (picture.getArr()[y][x] != ' ')
             return;
 
-        picture[y][x] = newChar;
+        picture.setArrElement(x, y, newChar);
 
         floodFill(picture, x+1, y, newChar);
         floodFill(picture, x-1, y, newChar);
         floodFill(picture, x, y+1, newChar);
         floodFill(picture, x, y-1, newChar);
+    }
+
+    private static boolean meetsExerciseExpectations(int width, int height) {
+        return 0 < height && 50 > height && 0 < width && 50 > width;
+    }
+
+    private static boolean positionWithinPicture(int x, int y, int width, int height) {
+        return y <= height && 0 <= y && x <= width && 0 <= x;
     }
 }
